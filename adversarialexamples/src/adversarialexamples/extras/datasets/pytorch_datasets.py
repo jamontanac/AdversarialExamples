@@ -9,13 +9,15 @@ class PytorchFlexibleDataset(AbstractDataset):
     def __init__(self, dataset_name: str, root: str, 
                  train: bool, mean: Tuple[float, float, float], 
                  std: Tuple[float, float, float], 
-                 normalize: bool = True):
+                 normalize: bool = True,
+                 image_size: Tuple[int, int] = (32, 32)):
         self.dataset_name = dataset_name
         self.mean = mean
         self.std = std
         self.normalize = normalize
         self._filepath = Path(root)
         self.train = train
+        self.image_size = image_size
 
         self.available_datasets = {
             'CIFAR10': datasets.CIFAR10,
@@ -25,35 +27,41 @@ class PytorchFlexibleDataset(AbstractDataset):
         self._set_transforms()
 
     def _set_transforms(self):
+        resize_and_crop = transforms.Resize(self.image_size)
+        basic_transforms = [ transforms.ToTensor() ]
         if self.normalize:
-            if self.train:
-                self.transform = transforms.Compose([
-                    transforms.RandomCrop(32, padding=4),  # Adjust crop size if necessary
-                    transforms.RandomHorizontalFlip(),
-                    transforms.ToTensor(),
-                    transforms.Normalize(self.mean, self.std)
-                ])
-            else:
-                self.transform = transforms.Compose([
-                    transforms.ToTensor(),
-                    transforms.Normalize(self.mean, self.std)
-                ])
+            basic_transforms.append(transforms.Normalize(self.mean, self.std))
+        
+        if self.train:
+            self.transform = transforms.Compose([
+                resize_and_crop,
+                transforms.RandomHorizontalFlip(),
+                *basic_transforms
+            ])
         else:
             self.transform = transforms.Compose([
-                transforms.ToTensor(),
+                resize_and_crop,
+                *basic_transforms
             ])
+        
 
     def _load(self) -> Any:
         if self.dataset_name not in self.available_datasets:
             raise ValueError(f"Dataset {self.dataset_name} not supported.")
 
         dataset_class = self.available_datasets[self.dataset_name]
+
+        basic_transforms = [ transforms.ToTensor() ]
+        if self.normalize:
+            basic_transforms.append(transforms.Normalize(self.mean, self.std))
+
+
         if self.dataset_name == 'PaintingStyle':
             if self.train:
                 original_dataset = dataset_class(root=str(self._filepath), 
-                                                transform=transforms.Compose([
-                                                    transforms.ToTensor(),
-                                                    transforms.Normalize(self.mean, self.std)])
+                                                transform=transforms.Compose(
+                                                    [*basic_transforms]
+                                                    )
                                                 )
                 augmented_dataset =  dataset_class(root=str(self._filepath), 
                                                 transform = self.transform)
@@ -67,9 +75,9 @@ class PytorchFlexibleDataset(AbstractDataset):
                 original_dataset = dataset_class(root=str(self._filepath),
                                                 train=self.train,
                                                 download=False,
-                                                transform=transforms.Compose([
-                                                    transforms.ToTensor(),
-                                                    transforms.Normalize(self.mean, self.std)])
+                                                transform=transforms.Compose(
+                                                    [*basic_transforms]
+                                                    )
                                                 )
                 augmented_dataset = dataset_class(root=str(self._filepath),
                                                 train=self.train,
@@ -102,89 +110,6 @@ class PytorchFlexibleDataset(AbstractDataset):
             std = self.std
         )
 
-
-# class PytorchFlexibleDataset(AbstractDataset):
-#     def __init__(self, dataset_name: str,
-#                     root: str, train: bool,
-#                     mean: Tuple[float,float,float],
-#                     std: Tuple[float,float,float], 
-#                     normalize: bool = True):
-#         self.dataset_name = dataset_name
-#         self.mean = mean
-#         self.std = std
-#         self.normalize = normalize
-#         self._filepath = Path(root)
-#         self.train = train
-
-#         self.available_datasets = {
-#             'CIFAR10': datasets.CIFAR10,
-#             # Add more datasets here as needed, e.g., 'Imagenette': datasets.ImageFolder
-#         }
-#         if normalize:
-#             if train:
-#                 self.transform = transforms.Compose([
-#                     transforms.RandomCrop(32, padding=4),
-#                     transforms.RandomHorizontalFlip(),
-#                     transforms.ToTensor(),
-#                     transforms.Normalize(mean, std)
-#                 ])
-#             else:
-#                 self.transform = transforms.Compose([
-#                     transforms.ToTensor(),
-#                     transforms.Normalize(mean, std)
-#                 ])
-
-#         else:
-#             self.transform = transforms.Compose([
-#                 transforms.ToTensor(),
-#             ])
-
-#     def _load(self) -> Any:
-#         if self.dataset_name not in self.available_datasets:
-#             raise ValueError(f"Dataset {self.dataset_name} not supported.")
-
-#         dataset_class = self.available_datasets[self.dataset_name]
-#         # Some datasets might not use the 'train' parameter, handle such cases as needed
-        
-#         if self.normalize and self.train:
-#             dataset_original = dataset_class(
-#                 root=self._filepath, 
-#                 train=self.train, 
-#                 download=False, 
-#                 transform=transforms.Compose([
-#                     transforms.ToTensor(),
-#                     transforms.Normalize(self.mean, self.std)
-#                 ])
-#             )
-#             dataset_augmented = dataset_class(
-#                 root=self._filepath, 
-#                 train=self.train, 
-#                 download=False, 
-#                 transform=self.transform
-#             )
-#             dataset = torch.utils.data.ConcatDataset([dataset_original, dataset_augmented])
-#         elif self.normalize and not self.train:
-#             dataset = dataset_class(
-#                 root=self._filepath, 
-#                 train=self.train, 
-#                 download=False, 
-#                 transform=self.transform
-#             )
-#         return dataset
-
-#     def _save(self, data: Any) -> None:
-#         raise NotImplementedError("Saving datasets is not supported.")
-
-#     def _describe(self) -> Dict[str, Any]:
-#         return dict(
-#             dataset_name=self.dataset_name,
-#             root=self._filepath,
-#             train=self.train,
-#             transform = self.transform,
-#             normalize = self.normalize,
-#             mean = self.mean,
-#             std = self.std
-#         )
 
 
 

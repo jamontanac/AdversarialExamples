@@ -8,6 +8,7 @@ Dataset_for_train:
   normalize: true
   mean: [0.5195, 0.4650, 0.4011]
   std: [0.2804, 0.2725, 0.2692]
+  image_size: [416, 416]
 Dataset_for_test:
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
   dataset_name: PaintingStyle
@@ -16,7 +17,7 @@ Dataset_for_test:
   normalize: true
   mean: [0.5195, 0.4650, 0.4011]
   std: [0.2804, 0.2725, 0.2692]
-
+  image_size: [416, 416]
 # Models and results for ArtDataSet
 Regnet_x_model:
   filepath: data/06_models/Regnet_x_art.pth
