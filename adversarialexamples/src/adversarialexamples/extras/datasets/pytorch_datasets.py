@@ -88,6 +88,20 @@ class PytorchFlexibleDataset(AbstractDataset):
 
         return dataset
 
+    def _save(self, data: Any) -> None:
+        raise NotImplementedError("Saving datasets is not supported.")
+
+    def _describe(self) -> Dict[str, Any]:
+        return dict(
+            dataset_name=self.dataset_name,
+            root=self._filepath,
+            train=self.train,
+            transform = self.transform,
+            normalize = self.normalize,
+            mean = self.mean,
+            std = self.std
+        )
+
 
 # class PytorchFlexibleDataset(AbstractDataset):
 #     def __init__(self, dataset_name: str,

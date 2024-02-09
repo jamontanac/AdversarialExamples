@@ -1,0 +1,41 @@
+# This file contains the catalog of datasets, models and results
+# ArtDataSet
+Dataset_for_train:
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
+  dataset_name: PaintingStyle
+  root: data/01_raw/art_dataset/train
+  train: true
+  normalize: true
+  mean: [0.5195, 0.4650, 0.4011]
+  std: [0.2804, 0.2725, 0.2692]
+Dataset_for_test:
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
+  dataset_name: PaintingStyle
+  root: data/01_raw/art_dataset/test
+  train: false
+  normalize: true
+  mean: [0.5195, 0.4650, 0.4011]
+  std: [0.2804, 0.2725, 0.2692]
+
+# Models and results for ArtDataSet
+Regnet_x_model:
+  filepath: data/06_models/Regnet_x_art.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Regnet_x_plot_results:
+  filepath: data/08_reporting/Regnet_x_plot_results_art.json
+  type: plotly.JSONDataset
+  versioned: true
+Regnet_y_model:
+  filepath: data/06_models/Regnet_y_art.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Regnet_y_plot_results:
+  filepath: data/08_reporting/Regnet_y_plot_results_art.json
+  type: plotly.JSONDataset
+  versioned: true
+Resnet_model:
+  filepath: data/06_models/Resnet_art.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Resnet_plot_results:
+  filepath: data/08_reporting/Resnet_plot_results_art.json
+  type: plotly.JSONDataset
+  versioned: true

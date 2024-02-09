@@ -1,0 +1,40 @@
+# This file contains the catalog of datasets, models and results
+# CIFAR10
+Dataset_for_train:
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
+  dataset_name: CIFAR10
+  root: data/01_raw/
+  train: true
+  normalize: true
+  mean: [0.4914, 0.4822, 0.4465]
+  std: [0.2470, 0.2435, 0.2616]
+Dataset_for_test:
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
+  dataset_name: CIFAR10
+  root: data/01_raw/
+  train: false
+  normalize: true
+  mean: [0.4914, 0.4822, 0.4465]
+  std: [0.2470, 0.2435, 0.2616]
+# Models and results for CIFAR10
+Regnet_x_model:
+  filepath: data/06_models/Regnet_x_CIFAR.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Regnet_x_plot_results:
+  filepath: data/08_reporting/Regnet_x_plot_results.json
+  type: plotly.JSONDataset
+  versioned: true
+Regnet_y_model:
+  filepath: data/06_models/Regnet_y_CIFAR.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Regnet_y_plot_results:
+  filepath: data/08_reporting/Regnet_y_plot_results_CIFAR.json
+  type: plotly.JSONDataset
+  versioned: true
+Resnet_model:
+  filepath: data/06_models/Resnet_CIFAR.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Resnet_plot_results:
+  filepath: data/08_reporting/Resnet_plot_results_CIFAR.json
+  type: plotly.JSONDataset
+  versioned: true

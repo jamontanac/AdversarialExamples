@@ -1,0 +1,80 @@
+# This file contains the catalog of datasets, models and results
+# CIFAR10
+CIFAR10_train:
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
+  dataset_name: CIFAR10
+  root: data/01_raw/
+  train: true
+  normalize: true
+  mean: [0.4914, 0.4822, 0.4465]
+  std: [0.2470, 0.2435, 0.2616]
+CIFAR10_test:
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
+  dataset_name: CIFAR10
+  root: data/01_raw/
+  train: false
+  normalize: true
+  mean: [0.4914, 0.4822, 0.4465]
+  std: [0.2470, 0.2435, 0.2616]
+# ArtDataSet
+ArtDataSet_train:
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
+  dataset_name: PaintingStyle
+  root: data/01_raw/art_dataset/train
+  train: true
+  normalize: true
+  mean: [0.5198, 0.4652, 0.4007]
+  std: [0.2804, 0.2725, 0.2694]
+ArtDataSet_test:
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
+  dataset_name: PaintingStyle
+  root: data/01_raw/art_dataset/test
+  train: false
+  normalize: true
+  mean: [0.5198, 0.4652, 0.4007]
+  std: [0.2804, 0.2725, 0.2694]
+
+# Models and results for ArtDataSet
+Regnet_x_model_art:
+  filepath: data/06_models/Regnet_x.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Regnet_x_plot_results_art:
+  filepath: data/08_reporting/Regnet_x_plot_results.json
+  type: plotly.JSONDataset
+  versioned: true
+Regnet_y_model_art:
+  filepath: data/06_models/Regnet_y.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Regnet_y_plot_results_art:
+  filepath: data/08_reporting/Regnet_y_plot_results.json
+  type: plotly.JSONDataset
+  versioned: true
+Resnet_model_art:
+  filepath: data/06_models/Resnet.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Resnet_plot_results_art:
+  filepath: data/08_reporting/Resnet_plot_results.json
+  type: plotly.JSONDataset
+  versioned: true
+# Models and results for CIFAR10
+Regnet_x_model_cifar10:
+  filepath: data/06_models/Regnet_x.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Regnet_x_plot_results_cifar10:
+  filepath: data/08_reporting/Regnet_x_plot_results.json
+  type: plotly.JSONDataset
+  versioned: true
+Regnet_y_model_cifar10:
+  filepath: data/06_models/Regnet_y.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Regnet_y_plot_results_cifar10:
+  filepath: data/08_reporting/Regnet_y_plot_results.json
+  type: plotly.JSONDataset
+  versioned: true
+Resnet_model_cifar10:
+  filepath: data/06_models/Resnet.pth
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
+Resnet_plot_results_cifar10:
+  filepath: data/08_reporting/Resnet_plot_results.json
+  type: plotly.JSONDataset
+  versioned: true

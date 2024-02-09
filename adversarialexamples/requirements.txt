@@ -14,3 +14,7 @@ pytest~=7.2
 ruff~=0.0.290
 scikit-learn~=1.0
 seaborn~=0.12.1
+torch
+torchvision
+numpy~=1.26.2
+scipy ~=1.11.4
