@@ -109,6 +109,8 @@ class PytorchFlexibleDataset(AbstractDataset):
             mean = self.mean,
             std = self.std
         )
+    def  _exists(self) -> bool:
+        return self._filepath.exists()
 
 
 
@@ -130,6 +132,8 @@ class PytorchDatasetModel(AbstractDataset):
 
     def _describe(self) -> dict[str, Any]:
         return dict(filepath=self._filepath)
+    def  _exists(self) -> bool:
+        return self._filepath.exists()
         
     
 class PytorchDatasetDict(AbstractDataset):
@@ -145,3 +149,5 @@ class PytorchDatasetDict(AbstractDataset):
 
     def _describe(self) -> Dict[str, Any]:
         return dict(filepath=self._filepath)
+    def  _exists(self) -> bool:
+        return self._filepath.exists()

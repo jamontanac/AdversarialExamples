@@ -1,6 +1,6 @@
 # This file contains the catalog of datasets, models and results
 # CIFAR10
-CIFAR10_train:
+Dataset_for_train:
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
   dataset_name: CIFAR10
   root: data/01_raw/
@@ -8,7 +8,8 @@ CIFAR10_train:
   normalize: true
   mean: [0.4914, 0.4822, 0.4465]
   std: [0.2470, 0.2435, 0.2616]
-CIFAR10_test:
+  image_size: [32, 32]
+Dataset_for_test:
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
   dataset_name: CIFAR10
   root: data/01_raw/
@@ -16,65 +17,66 @@ CIFAR10_test:
   normalize: true
   mean: [0.4914, 0.4822, 0.4465]
   std: [0.2470, 0.2435, 0.2616]
-# ArtDataSet
-ArtDataSet_train:
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: PaintingStyle
-  root: data/01_raw/art_dataset/train
-  train: true
-  normalize: true
-  mean: [0.5198, 0.4652, 0.4007]
-  std: [0.2804, 0.2725, 0.2694]
-ArtDataSet_test:
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: PaintingStyle
-  root: data/01_raw/art_dataset/test
-  train: false
-  normalize: true
-  mean: [0.5198, 0.4652, 0.4007]
-  std: [0.2804, 0.2725, 0.2694]
-
-# Models and results for ArtDataSet
-Regnet_x_model_art:
-  filepath: data/06_models/Regnet_x.pth
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
-Regnet_x_plot_results_art:
-  filepath: data/08_reporting/Regnet_x_plot_results.json
-  type: plotly.JSONDataset
-  versioned: true
-Regnet_y_model_art:
-  filepath: data/06_models/Regnet_y.pth
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
-Regnet_y_plot_results_art:
-  filepath: data/08_reporting/Regnet_y_plot_results.json
-  type: plotly.JSONDataset
-  versioned: true
-Resnet_model_art:
-  filepath: data/06_models/Resnet.pth
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
-Resnet_plot_results_art:
-  filepath: data/08_reporting/Resnet_plot_results.json
-  type: plotly.JSONDataset
-  versioned: true
+  image_size: [32, 32]
 # Models and results for CIFAR10
-Regnet_x_model_cifar10:
-  filepath: data/06_models/Regnet_x.pth
+Regnet_x_model:
+  filepath: data/06_models/Regnet_x_CIFAR.pth
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
-Regnet_x_plot_results_cifar10:
+Regnet_x_plot_results:
   filepath: data/08_reporting/Regnet_x_plot_results.json
   type: plotly.JSONDataset
   versioned: true
-Regnet_y_model_cifar10:
-  filepath: data/06_models/Regnet_y.pth
+Regnet_y_model:
+  filepath: data/06_models/Regnet_y_CIFAR.pth
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
-Regnet_y_plot_results_cifar10:
-  filepath: data/08_reporting/Regnet_y_plot_results.json
+Regnet_y_plot_results:
+  filepath: data/08_reporting/Regnet_y_plot_results_CIFAR.json
   type: plotly.JSONDataset
   versioned: true
-Resnet_model_cifar10:
-  filepath: data/06_models/Resnet.pth
+Resnet_model:
+  filepath: data/06_models/Resnet_CIFAR.pth
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
-Resnet_plot_results_cifar10:
-  filepath: data/08_reporting/Resnet_plot_results.json
+Resnet_plot_results:
+  filepath: data/08_reporting/Resnet_plot_results_CIFAR.json
   type: plotly.JSONDataset
   versioned: true
+# "{model_type}_Adversarial_{attack}@Dataset":
+#   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+#   filepath:  data/04_feature/{model_type}_Adversarial_CIFAR_{attack}.pt
+
+Regnet_x_model_Adversarial_CarliniL2@Dataset:
+  filepath: data/04_feature/Regnet_x_model_Adversarial_CIFAR_CarliniL2.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_x_model_Adversarial_DeepFool@Dataset:
+  filepath: data/04_feature/Regnet_x_model_Adversarial_CIFAR_DeepFool.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_x_model_Adversarial_FSGM@Dataset:
+  filepath: data/04_feature/Regnet_x_model_Adversarial_CIFAR_FSGM.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_x_model_Adversarial_PGD@Dataset:
+  filepath: data/04_feature/Regnet_x_model_Adversarial_CIFAR_PGD.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_y_model_Adversarial_CarliniL2@Dataset:
+  filepath: data/04_feature/Regnet_y_model_Adversarial_CIFAR_CarliniL2.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_y_model_Adversarial_DeepFool@Dataset:
+  filepath: data/04_feature/Regnet_y_model_Adversarial_CIFAR_DeepFool.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_y_model_Adversarial_FSGM@Dataset:
+  filepath: data/04_feature/Regnet_y_model_Adversarial_CIFAR_FSGM.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_y_model_Adversarial_PGD@Dataset:
+  filepath: data/04_feature/Regnet_y_model_Adversarial_CIFAR_PGD.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Resnet_model_Adversarial_CarliniL2@Dataset:
+  filepath: data/04_feature/Resnet_model_Adversarial_CIFAR_CarliniL2.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Resnet_model_Adversarial_DeepFool@Dataset:
+  filepath: data/04_feature/Resnet_model_Adversarial_CIFAR_DeepFool.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Resnet_model_Adversarial_FSGM@Dataset:
+  filepath: data/04_feature/Resnet_model_Adversarial_CIFAR_FSGM.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Resnet_model_Adversarial_PGD@Dataset:
+  filepath: data/04_feature/Resnet_model_Adversarial_CIFAR_PGD.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict

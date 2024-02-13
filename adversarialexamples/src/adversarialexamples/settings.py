@@ -5,9 +5,9 @@ https://docs.kedro.org/en/stable/kedro_project_setup/settings.html."""
 # Instantiated project hooks.
 # For example, after creating a hooks.py and defining a ProjectHooks class there, do
 # from pandas_viz.hooks import ProjectHooks
-
+from adversarialexamples.hooks import MyHooks
 # Hooks are executed in a Last-In-First-Out (LIFO) order.
-# HOOKS = (ProjectHooks(),)
+HOOKS = (MyHooks(),)
 
 # Installed plugins for which to disable hook auto-registration.
 # DISABLE_HOOKS_FOR_PLUGINS = ("kedro-viz",)

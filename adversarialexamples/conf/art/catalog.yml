@@ -40,3 +40,43 @@ Resnet_plot_results:
   filepath: data/08_reporting/Resnet_plot_results_art.json
   type: plotly.JSONDataset
   versioned: true
+# "{model_type}_Adversarial_{attack}@Dataset":
+#   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+#   filepath:  data/04_feature/{model_type}_Adversarial_ART_{attack}.pt
+
+Regnet_x_model_Adversarial_CarliniL2@Dataset:
+  filepath: data/04_feature/Regnet_x_model_Adversarial_ART_CarliniL2.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_x_model_Adversarial_DeepFool@Dataset:
+  filepath: data/04_feature/Regnet_x_model_Adversarial_ART_DeepFool.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_x_model_Adversarial_FSGM@Dataset:
+  filepath: data/04_feature/Regnet_x_model_Adversarial_ART_FSGM.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_x_model_Adversarial_PGD@Dataset:
+  filepath: data/04_feature/Regnet_x_model_Adversarial_ART_PGD.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_y_model_Adversarial_CarliniL2@Dataset:
+  filepath: data/04_feature/Regnet_y_model_Adversarial_ART_CarliniL2.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_y_model_Adversarial_DeepFool@Dataset:
+  filepath: data/04_feature/Regnet_y_model_Adversarial_ART_DeepFool.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_y_model_Adversarial_FSGM@Dataset:
+  filepath: data/04_feature/Regnet_y_model_Adversarial_ART_FSGM.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Regnet_y_model_Adversarial_PGD@Dataset:
+  filepath: data/04_feature/Regnet_y_model_Adversarial_ART_PGD.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Resnet_model_Adversarial_CarliniL2@Dataset:
+  filepath: data/04_feature/Resnet_model_Adversarial_ART_CarliniL2.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Resnet_model_Adversarial_DeepFool@Dataset:
+  filepath: data/04_feature/Resnet_model_Adversarial_ART_DeepFool.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Resnet_model_Adversarial_FSGM@Dataset:
+  filepath: data/04_feature/Resnet_model_Adversarial_ART_FSGM.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+Resnet_model_Adversarial_PGD@Dataset:
+  filepath: data/04_feature/Resnet_model_Adversarial_ART_PGD.pt
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict

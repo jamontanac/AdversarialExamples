@@ -14,13 +14,16 @@ def create_pipeline(**kwargs) -> Pipeline:
             inputs=["train_loader","test_loader","params:model_options"],
             outputs=["model",
                      "report"],
-            name = "Training_of_model"
+            name = "Training_of_model",
+            tags=["training"]
             ),
         
             node(
                 func=plot_results,
                 inputs="report",
-                outputs="figure"
+                outputs="figure",
+                name="plot_training_results",
+                tags=["training"]
                 ),
         ],outputs=["model","figure"])
 
@@ -52,3 +55,5 @@ def create_pipeline(**kwargs) -> Pipeline:
     )
 
     return Resnet_pipeline+RegnetX_pipeline+RegnetY_pipeline
+
+

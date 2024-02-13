@@ -1,0 +1,5 @@
+Data_information: 
+  mean: [0.5195, 0.4650, 0.4011]
+  std: [0.2804, 0.2725, 0.2692]
+  input_shape: [416, 416]
+  classes: 27

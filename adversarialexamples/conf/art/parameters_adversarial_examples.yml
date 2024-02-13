@@ -3,3 +3,48 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/0.19.1/configuration/parameters.html
+Adversarial_Attacks:
+  FSGM:
+    module: art.attacks.evasion
+    class: FastGradientMethod
+    kwargs:
+      # eps_step: 0.001
+      eps: 0.01
+      norm: inf
+      minimal: False
+      batch_size: 128
+      targeted: False #This means that we do not care for specific class
+  DeepFool:
+    module: art.attacks.evasion
+    class: DeepFool 
+    kwargs:
+      max_iter: 10
+      epsilon: 0.01
+      nb_grads: 10
+      batch_size: 256
+  CarliniL2:
+    module: art.attacks.evasion
+    class: CarliniL2Method 
+    kwargs:
+      confidence: 1
+      targeted: False
+      learning_rate: 0.01
+      binary_search_steps: 5
+      max_iter: 10
+      initial_const: 0.01
+      max_halving: 5
+      max_doubling: 5
+      batch_size: 256
+      verbose: True
+  PGD:
+    module: art.attacks.evasion
+    class: ProjectedGradientDescent 
+    kwargs:
+      eps: 0.01
+      eps_step: 0.001
+      max_iter: 10
+      batch_size: 256
+      num_random_init: 1
+
+Attacks_to_use:
+  attacks: ["DeepFool", "CarliniL2","FSGM","PGD"]
