@@ -1,4 +1,4 @@
-Test_data_information: 
+Data_information: 
   mean: [0.4914, 0.4822, 0.4465]
   std: [0.2470, 0.2435, 0.2616]
   input_shape: [32, 32]
