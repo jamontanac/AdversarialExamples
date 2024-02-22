@@ -1,0 +1,8 @@
+
+Dataset_information: 
+  name: Intel
+  root: data/01_raw/Intel_dataset 
+  mean: [0.4301, 0.4574, 0.4538]
+  std: [0.2694, 0.2679, 0.2983]
+  input_shape: [150,150]
+  classes: 6

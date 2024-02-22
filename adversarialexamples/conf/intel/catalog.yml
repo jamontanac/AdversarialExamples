@@ -1,35 +1,29 @@
 # This file contains the catalog of datasets, models and results
 # IntelDataSet
-Dataset_for_train:
+_dataset_base: &dataset_base
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: Intel
-  root: data/01_raw/Intel_dataset/train
-  train: true
+  dataset_name: ${globals:Dataset_information.name}
   normalize: true
-  mean: [0.4301, 0.4574, 0.4538] 
-  std: [0.2694, 0.2679, 0.2983]
-  image_size: [150,150]
+  mean: ${globals:Dataset_information.mean}
+  std: ${globals:Dataset_information.std}
+  image_size: ${globals:Dataset_information.input_shape}
+
+Dataset_for_train:
+  <<: *dataset_base 
+  train: true
+  root: ${globals:Dataset_information.root}/train
   adversarial_generation: false
 Dataset_for_test:
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: Intel
-  root: data/01_raw/Intel_dataset/test
+  <<: *dataset_base
+  root: ${globals:Dataset_information.root}/test
   train: false
-  normalize: true
-  mean: [0.4301, 0.4574, 0.4538] 
-  std: [0.2694, 0.2679, 0.2983]
-  image_size: [150,150]
   adversarial_generation: false
 Dataset_for_test_adversarial:
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: Intel
-  root: data/01_raw/Intel_dataset/test
+  <<: *dataset_base
+  root: ${globals:Dataset_information.root}/test
   train: false
-  normalize: true
-  mean: [0.4301, 0.4574, 0.4538] 
-  std: [0.2694, 0.2679, 0.2983]
-  image_size: [150,150]
   adversarial_generation: true
+
 # Models and results for IntelDataSet
 Regnet_x_model:
   filepath: data/06_models/Regnet_x_Intel.pth

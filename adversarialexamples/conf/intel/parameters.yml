@@ -1,6 +1,6 @@
 Data_information: 
-  dataset_name: Intel
-  mean: [0.4301, 0.4574, 0.4538] 
-  std: [0.2694, 0.2679, 0.2983]
-  input_shape: [150,150]
-  classes: 6
+  name: ${globals:Dataset_information.name}
+  mean: ${globals:Dataset_information.mean}
+  std: ${globals:Dataset_information.std}
+  input_shape: ${globals:Dataset_information.input_shape}
+  classes: ${globals:Dataset_information.classes}

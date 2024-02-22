@@ -1,4 +1,5 @@
 # This file contains the catalog of datasets, models and results
+# ArchDataSet
 _dataset_base: &dataset_base
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
   dataset_name: ${globals:Dataset_information.name}
@@ -22,7 +23,7 @@ Dataset_for_test_adversarial:
   root: ${globals:Dataset_information.root}/test
   train: false
   adversarial_generation: true
-# ArchDataSet
+
 # Models and results for ArchDataSet
 Regnet_x_model:
   filepath: data/06_models/Regnet_x_Arch.pth
