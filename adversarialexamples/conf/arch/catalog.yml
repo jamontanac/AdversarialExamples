@@ -1,35 +1,28 @@
 # This file contains the catalog of datasets, models and results
-# ArchDataSet
-Dataset_for_train:
+_dataset_base: &dataset_base
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: Architecture
-  root: data/01_raw/Arch_dataset/train
-  train: true
+  dataset_name: ${globals:Dataset_information.name}
   normalize: true
-  mean: [0.4396, 0.4223, 0.4027]
-  std: [0.2509, 0.2560, 0.2862]
-  image_size: [64,64]
+  mean: ${globals:Dataset_information.mean}
+  std: ${globals:Dataset_information.std}
+  image_size: ${globals:Dataset_information.input_shape}
+
+Dataset_for_train:
+  <<: *dataset_base 
+  train: true
+  root: ${globals:Dataset_information.root}/train
   adversarial_generation: false
 Dataset_for_test:
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: Architecture
-  root: data/01_raw/Arch_dataset/test
+  <<: *dataset_base
+  root: ${globals:Dataset_information.root}/test
   train: false
-  normalize: true
-  mean: [0.4396, 0.4223, 0.4027]
-  std: [0.2509, 0.2560, 0.2862]
-  image_size: [64,64]
   adversarial_generation: false
 Dataset_for_test_adversarial:
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: Architecture
-  root: data/01_raw/Arch_dataset/test
+  <<: *dataset_base
+  root: ${globals:Dataset_information.root}/test
   train: false
-  normalize: true
-  mean: [0.4396, 0.4223, 0.4027]
-  std: [0.2509, 0.2560, 0.2862]
-  image_size: [64,64]
   adversarial_generation: true
+# ArchDataSet
 # Models and results for ArchDataSet
 Regnet_x_model:
   filepath: data/06_models/Regnet_x_Arch.pth

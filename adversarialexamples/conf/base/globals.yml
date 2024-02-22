@@ -1,0 +1,8 @@
+
+Dataset_information: 
+  name: CIFAR10
+  root: data/01_raw/
+  mean: [0.4914, 0.4822, 0.4465]
+  std: [0.2470, 0.2435, 0.2616]
+  input_shape: [32, 32]
+  classes: 10

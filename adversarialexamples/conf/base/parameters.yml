@@ -1,6 +1,7 @@
 Data_information: 
-  dataset_name: CIFAR10
-  mean: [0.4914, 0.4822, 0.4465]
-  std: [0.2470, 0.2435, 0.2616]
-  input_shape: [32, 32]
-  classes: 10
+  name: ${globals:Dataset_information.name}
+  root: ${globals:Dataset_information.root}
+  mean: ${globals:Dataset_information.mean}
+  std: ${globals:Dataset_information.std}
+  input_shape: ${globals:Dataset_information.input_shape}
+  classes: ${globals:Dataset_information.classes}

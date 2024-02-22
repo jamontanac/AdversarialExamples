@@ -20,7 +20,7 @@ Adversarial_Attacks:
     kwargs:
       max_iter: 10
       epsilon: 0.01
-      nb_grads: 10
+      nb_grads: ${globals:Dataset_information.classes}
       batch_size: 256
   CarliniL2:
     module: art.attacks.evasion

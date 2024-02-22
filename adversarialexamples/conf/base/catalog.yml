@@ -1,34 +1,25 @@
 # This file contains the catalog of datasets, models and results
 # CIFAR10
-Dataset_for_train:
+_dataset_base: &dataset_base
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: CIFAR10
-  root: data/01_raw/
-  train: true
+  dataset_name: ${globals:Dataset_information.name}
+  root: ${globals:Dataset_information.root}
   normalize: true
-  mean: [0.4914, 0.4822, 0.4465]
-  std: [0.2470, 0.2435, 0.2616]
-  image_size: [32, 32]
+  mean: ${globals:Dataset_information.mean}
+  std: ${globals:Dataset_information.std}
+  image_size: ${globals:Dataset_information.input_shape}
+
+Dataset_for_train:
+  <<: *dataset_base
+  train: true
   adversarial_generation: false
 Dataset_for_test:
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: CIFAR10
-  root: data/01_raw/
+  <<: *dataset_base
   train: false
-  normalize: true
-  mean: [0.4914, 0.4822, 0.4465]
-  std: [0.2470, 0.2435, 0.2616]
-  image_size: [32, 32]
   adversarial_generation: false
 Dataset_for_test_adversarial:
-  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: CIFAR10
-  root: data/01_raw/
+  <<: *dataset_base
   train: false
-  normalize: true
-  mean: [0.4914, 0.4822, 0.4465]
-  std: [0.2470, 0.2435, 0.2616]
-  image_size: [32, 32]
   adversarial_generation: true
 # Models and results for CIFAR10
 Regnet_x_model:

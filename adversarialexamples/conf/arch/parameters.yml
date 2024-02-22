@@ -1,6 +1,6 @@
 Data_information: 
-  dataset_name: Architecture
-  mean: [0.4396, 0.4223, 0.4027]
-  std: [0.2509, 0.2560, 0.2862]
-  input_shape: [64,64]
-  classes: 10
+  name: ${globals:Dataset_information.name}
+  mean: ${globals:Dataset_information.mean}
+  std: ${globals:Dataset_information.std}
+  input_shape: ${globals:Dataset_information.input_shape}
+  classes: ${globals:Dataset_information.classes}
