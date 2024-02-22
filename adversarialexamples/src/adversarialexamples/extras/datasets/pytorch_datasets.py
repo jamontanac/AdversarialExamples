@@ -10,7 +10,8 @@ class PytorchFlexibleDataset(AbstractDataset):
                  train: bool, mean: Tuple[float, float, float], 
                  std: Tuple[float, float, float], 
                  normalize: bool = True,
-                 image_size: Tuple[int, int] = (32, 32)):
+                 image_size: Tuple[int, int] = (32, 32),
+                 adversarial_generation: bool = False,):
         self.dataset_name = dataset_name
         self.mean = mean
         self.std = std
@@ -18,10 +19,14 @@ class PytorchFlexibleDataset(AbstractDataset):
         self._filepath = Path(root)
         self.train = train
         self.image_size = image_size
+        self.adversarial_generation = adversarial_generation
 
         self.available_datasets = {
             'CIFAR10': datasets.CIFAR10,
-            'PaintingStyle': datasets.ImageFolder  # Assuming the dataset is organized in folders by class
+            'PaintingStyle': datasets.ImageFolder,
+            'Architecture': datasets.ImageFolder,
+            'Intel': datasets.ImageFolder,
+            # Assuming the dataset is organized in folders by class
             # You can add custom dataset handlers here if needed
         }
         self._set_transforms()
@@ -31,18 +36,13 @@ class PytorchFlexibleDataset(AbstractDataset):
         basic_transforms = [ transforms.ToTensor() ]
         if self.normalize:
             basic_transforms.append(transforms.Normalize(self.mean, self.std))
-        
-        if self.train:
-            self.transform = transforms.Compose([
-                resize_and_crop,
-                transforms.RandomHorizontalFlip(),
-                *basic_transforms
-            ])
-        else:
-            self.transform = transforms.Compose([
-                resize_and_crop,
-                *basic_transforms
-            ])
+
+        self.original_transform = transforms.Compose([resize_and_crop,*basic_transforms])
+        #photogrametry transforms
+        random_color = transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.5)
+        self.random_photogrametry_transform = transforms.Compose([*basic_transforms,random_color])
+        #rotation transform
+        self.rotate_transform = transforms.Compose([*basic_transforms,transforms.RandomRotation(degrees=(0,180))])
         
 
     def _load(self) -> Any:
@@ -51,46 +51,49 @@ class PytorchFlexibleDataset(AbstractDataset):
 
         dataset_class = self.available_datasets[self.dataset_name]
 
-        basic_transforms = [ transforms.ToTensor() ]
-        if self.normalize:
-            basic_transforms.append(transforms.Normalize(self.mean, self.std))
+        if self.available_datasets[self.dataset_name]==datasets.ImageFolder:
 
-
-        if self.dataset_name == 'PaintingStyle':
+            Distort_dataset = dataset_class(root=str(self._filepath),
+                                                         transform= self.random_photogrametry_transform)
+                                
+            Original_dataset = dataset_class(root=str(self._filepath),
+                                                transform = self.original_transform)
+            Rotated_dataset = dataset_class(root=str(self._filepath),
+                                                transform = self.rotate_transform)
+            
             if self.train:
-                original_dataset = dataset_class(root=str(self._filepath), 
-                                                transform=transforms.Compose(
-                                                    [*basic_transforms]
-                                                    )
-                                                )
-                augmented_dataset =  dataset_class(root=str(self._filepath), 
-                                                transform = self.transform)
-                dataset = ConcatDataset([original_dataset,augmented_dataset])
+                dataset = ConcatDataset([Original_dataset,Rotated_dataset,Distort_dataset])
 
             else:
-                dataset =  dataset_class(root=str(self._filepath), 
-                                                transform = self.transform)
-        elif  self.dataset_name=='CIFAR10':
+                if self.adversarial_generation:
+                    dataset = ConcatDataset([Original_dataset])
+                else:
+                    dataset = ConcatDataset([Original_dataset,Distort_dataset])
+                
+                
+        if self.available_datasets[self.dataset_name]==datasets.CIFAR10:
+            Distort_dataset = dataset_class(root=str(self._filepath),
+                                                            train=self.train,
+                                                            download=False,
+                                                            transform = self.random_photogrametry_transform
+                                                            )
+            Original_dataset = dataset_class(root=str(self._filepath),
+                                                train=self.train,
+                                                download=False,
+                                                transform=self.original_transform
+                                                )
+            Rotated_dataset = dataset_class(root=str(self._filepath),
+                                                train=self.train,
+                                                download=False,
+                                                transform=self.rotate_transform
+                                                )
             if self.train:
-                original_dataset = dataset_class(root=str(self._filepath),
-                                                train=self.train,
-                                                download=False,
-                                                transform=transforms.Compose(
-                                                    [*basic_transforms]
-                                                    )
-                                                )
-                augmented_dataset = dataset_class(root=str(self._filepath),
-                                                train=self.train,
-                                                download=False,
-                                                transform=self.transform
-                                                )
-                dataset  = ConcatDataset([original_dataset,augmented_dataset])
+                dataset  = ConcatDataset([Original_dataset,Rotated_dataset,Distort_dataset])
             else:
-                dataset =  dataset_class(root=str(self._filepath),
-                                                train=self.train,
-                                                download=False,
-                                                transform=self.transform
-                                                ) 
+                if self.adversarial_generation:
+                    dataset = ConcatDataset([Original_dataset])
+                else:
+                    dataset = ConcatDataset([Original_dataset,Distort_dataset]) 
         else:
             pass
 
@@ -104,10 +107,14 @@ class PytorchFlexibleDataset(AbstractDataset):
             dataset_name=self.dataset_name,
             root=self._filepath,
             train=self.train,
-            transform = self.transform,
+            original_transform = self.original_transform,
+            random_photogrametry_transform = self.random_photogrametry_transform,
+            rotate_transform = self.rotate_transform,                        
             normalize = self.normalize,
             mean = self.mean,
-            std = self.std
+            std = self.std,
+            image_size = self.image_size,
+            adversarial_generation = self.adversarial_generation
         )
     def  _exists(self) -> bool:
         return self._filepath.exists()

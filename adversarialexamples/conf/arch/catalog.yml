@@ -1,94 +1,94 @@
 # This file contains the catalog of datasets, models and results
-# ArtDataSet
+# ArchDataSet
 Dataset_for_train:
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: PaintingStyle
-  root: data/01_raw/art_dataset/train
+  dataset_name: Architecture
+  root: data/01_raw/Arch_dataset/train
   train: true
   normalize: true
-  mean: [0.5195, 0.4650, 0.4011]
-  std: [0.2804, 0.2725, 0.2692]
-  image_size: [416, 416]
+  mean: [0.4396, 0.4223, 0.4027]
+  std: [0.2509, 0.2560, 0.2862]
+  image_size: [64,64]
   adversarial_generation: false
 Dataset_for_test:
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: PaintingStyle
-  root: data/01_raw/art_dataset/test
+  dataset_name: Architecture
+  root: data/01_raw/Arch_dataset/test
   train: false
   normalize: true
-  mean: [0.5195, 0.4650, 0.4011]
-  std: [0.2804, 0.2725, 0.2692]
-  image_size: [416, 416]
+  mean: [0.4396, 0.4223, 0.4027]
+  std: [0.2509, 0.2560, 0.2862]
+  image_size: [64,64]
   adversarial_generation: false
 Dataset_for_test_adversarial:
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
-  dataset_name: PaintingStyle
-  root: data/01_raw/art_dataset/test
+  dataset_name: Architecture
+  root: data/01_raw/Arch_dataset/test
   train: false
   normalize: true
-  mean: [0.5195, 0.4650, 0.4011]
-  std: [0.2804, 0.2725, 0.2692]
-  image_size: [416, 416]
+  mean: [0.4396, 0.4223, 0.4027]
+  std: [0.2509, 0.2560, 0.2862]
+  image_size: [64,64]
   adversarial_generation: true
-# Models and results for ArtDataSet
+# Models and results for ArchDataSet
 Regnet_x_model:
-  filepath: data/06_models/Regnet_x_art.pth
+  filepath: data/06_models/Regnet_x_Arch.pth
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
 Regnet_x_plot_results:
-  filepath: data/08_reporting/Regnet_x_plot_results_art.json
+  filepath: data/08_reporting/Regnet_x_plot_results_Arch.json
   type: plotly.JSONDataset
   versioned: true
 Regnet_y_model:
-  filepath: data/06_models/Regnet_y_art.pth
+  filepath: data/06_models/Regnet_y_Arch.pth
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
 Regnet_y_plot_results:
-  filepath: data/08_reporting/Regnet_y_plot_results_art.json
+  filepath: data/08_reporting/Regnet_y_plot_results_Arch.json
   type: plotly.JSONDataset
   versioned: true
 Resnet_model:
-  filepath: data/06_models/Resnet_art.pth
+  filepath: data/06_models/Resnet_Arch.pth
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetModel
 Resnet_plot_results:
-  filepath: data/08_reporting/Resnet_plot_results_art.json
+  filepath: data/08_reporting/Resnet_plot_results_Arch.json
   type: plotly.JSONDataset
   versioned: true
 # "{model_type}_Adversarial_{attack}@Dataset":
 #   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
-#   filepath:  data/04_feature/{model_type}_Adversarial_ART_{attack}.pt
+#   filepath:  data/04_feature/{model_type}_Adversarial_Arch_{attack}.pt
 
 Regnet_x_model_Adversarial_CarliniL2@Dataset:
-  filepath: data/04_feature/Regnet_x_model_Adversarial_ART_CarliniL2.pt
+  filepath: data/04_feature/Regnet_x_model_Adversarial_Arch_CarliniL2.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Regnet_x_model_Adversarial_DeepFool@Dataset:
-  filepath: data/04_feature/Regnet_x_model_Adversarial_ART_DeepFool.pt
+  filepath: data/04_feature/Regnet_x_model_Adversarial_Arch_DeepFool.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Regnet_x_model_Adversarial_FSGM@Dataset:
-  filepath: data/04_feature/Regnet_x_model_Adversarial_ART_FSGM.pt
+  filepath: data/04_feature/Regnet_x_model_Adversarial_Arch_FSGM.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Regnet_x_model_Adversarial_PGD@Dataset:
-  filepath: data/04_feature/Regnet_x_model_Adversarial_ART_PGD.pt
+  filepath: data/04_feature/Regnet_x_model_Adversarial_Arch_PGD.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Regnet_y_model_Adversarial_CarliniL2@Dataset:
-  filepath: data/04_feature/Regnet_y_model_Adversarial_ART_CarliniL2.pt
+  filepath: data/04_feature/Regnet_y_model_Adversarial_Arch_CarliniL2.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Regnet_y_model_Adversarial_DeepFool@Dataset:
-  filepath: data/04_feature/Regnet_y_model_Adversarial_ART_DeepFool.pt
+  filepath: data/04_feature/Regnet_y_model_Adversarial_Arch_DeepFool.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Regnet_y_model_Adversarial_FSGM@Dataset:
-  filepath: data/04_feature/Regnet_y_model_Adversarial_ART_FSGM.pt
+  filepath: data/04_feature/Regnet_y_model_Adversarial_Arch_FSGM.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Regnet_y_model_Adversarial_PGD@Dataset:
-  filepath: data/04_feature/Regnet_y_model_Adversarial_ART_PGD.pt
+  filepath: data/04_feature/Regnet_y_model_Adversarial_Arch_PGD.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Resnet_model_Adversarial_CarliniL2@Dataset:
-  filepath: data/04_feature/Resnet_model_Adversarial_ART_CarliniL2.pt
+  filepath: data/04_feature/Resnet_model_Adversarial_Arch_CarliniL2.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Resnet_model_Adversarial_DeepFool@Dataset:
-  filepath: data/04_feature/Resnet_model_Adversarial_ART_DeepFool.pt
+  filepath: data/04_feature/Resnet_model_Adversarial_Arch_DeepFool.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Resnet_model_Adversarial_FSGM@Dataset:
-  filepath: data/04_feature/Resnet_model_Adversarial_ART_FSGM.pt
+  filepath: data/04_feature/Resnet_model_Adversarial_Arch_FSGM.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 Resnet_model_Adversarial_PGD@Dataset:
-  filepath: data/04_feature/Resnet_model_Adversarial_ART_PGD.pt
+  filepath: data/04_feature/Resnet_model_Adversarial_Arch_PGD.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict

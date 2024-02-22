@@ -15,7 +15,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             outputs=["model",
                      "report"],
             name = "Training_of_model",
-            tags=["training"]
+            tags=["training",]
             ),
         
             node(
@@ -33,7 +33,8 @@ def create_pipeline(**kwargs) -> Pipeline:
         inputs={"train_loader":"Dataset_for_train_normalized","test_loader":"Dataset_for_test_normalized"},
         outputs={"model":"Resnet_model",
                 "figure": "Resnet_plot_results"},
-        namespace="Resnet_pipeline"
+        namespace="Resnet_pipeline",
+        tags=["Resnet_model"]
     ) 
         
     RegnetX_pipeline = pipeline(
@@ -42,7 +43,8 @@ def create_pipeline(**kwargs) -> Pipeline:
         inputs={"train_loader":"Dataset_for_train_normalized","test_loader":"Dataset_for_test_normalized"},
         outputs={"model":"Regnet_x_model",
                 "figure": "Regnet_x_plot_results"},
-        namespace="Regnet_x_pipeline"
+        namespace="Regnet_x_pipeline",
+        tags=["Regnet_x_model"]
     )
 
     RegnetY_pipeline = pipeline(
@@ -51,7 +53,8 @@ def create_pipeline(**kwargs) -> Pipeline:
         inputs={"train_loader":"Dataset_for_train_normalized","test_loader":"Dataset_for_test_normalized"},
         outputs={"model":"Regnet_y_model",
                 "figure": "Regnet_y_plot_results"},
-        namespace="Regnet_y_pipeline"
+        namespace="Regnet_y_pipeline",
+        tags=["Regnet_y_model"]
     )
 
     return Resnet_pipeline+RegnetX_pipeline+RegnetY_pipeline

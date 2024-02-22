@@ -1,0 +1,18 @@
+# This is a boilerplate parameters config generated for pipeline 'training'
+# using Kedro 0.19.1.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://docs.kedro.org/en/0.19.1/configuration/parameters.html
+training_parameters_Resnet:
+  epochs: 50
+  model_name: "Resnet"
+  num_classes: 6
+
+training_parameters_RegnetX:
+  epochs: 50
+  model_name: "Regnet_x"
+  num_classes: 6
+training_parameters_RegnetY:
+  epochs: 50
+  model_name: "Regnet_y"
+  num_classes: 6

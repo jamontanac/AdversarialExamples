@@ -79,10 +79,10 @@ def create_pipeline(attack_types:List[str]=["DeepFool", "CarliniL2","FSGM","PGD"
                                 'params:test_data':"params:Data_information",
                                 'params:classifier_options':"params:Data_information"},
                     inputs={"model":f"{model_ref}",
-                            "TestLoader":"Dataset_for_test_normalized",
+                            "TestLoader":"Dataset_for_test_adversarial_normalized",
                            },
                     outputs={"Adversarial_Data":f"{model_ref}_Adversarial_{attack_type}@Dataset"},
-                    namespace=f"{model_ref}_Adversarial_Generation_{attack_type}")
+                    namespace=f"{model_ref}_Adversarial_Generation_{attack_type}",tags=["adversarial_generation",attack_type])
                     for attack_type in attack_types
                     ]
         if index ==0:

@@ -9,6 +9,7 @@ Dataset_for_train:
   mean: [0.4914, 0.4822, 0.4465]
   std: [0.2470, 0.2435, 0.2616]
   image_size: [32, 32]
+  adversarial_generation: false
 Dataset_for_test:
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
   dataset_name: CIFAR10
@@ -18,6 +19,17 @@ Dataset_for_test:
   mean: [0.4914, 0.4822, 0.4465]
   std: [0.2470, 0.2435, 0.2616]
   image_size: [32, 32]
+  adversarial_generation: false
+Dataset_for_test_adversarial:
+  type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchFlexibleDataset
+  dataset_name: CIFAR10
+  root: data/01_raw/
+  train: false
+  normalize: true
+  mean: [0.4914, 0.4822, 0.4465]
+  std: [0.2470, 0.2435, 0.2616]
+  image_size: [32, 32]
+  adversarial_generation: true
 # Models and results for CIFAR10
 Regnet_x_model:
   filepath: data/06_models/Regnet_x_CIFAR.pth
