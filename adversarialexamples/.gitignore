@@ -315,4 +315,7 @@ cython_debug/
 *.zip
 *.tar.gz
 *tgz
-download_CIFAR_dataset.py
+../download_CIFAR_dataset.py
+../*.zip
+../*.tar.gz
+../*.tgz
