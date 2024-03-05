@@ -5,5 +5,3 @@ Data_information:
   std: ${globals:Dataset_information.std}
   input_shape: ${globals:Dataset_information.input_shape}
   classes: ${globals:Dataset_information.classes}
-  Top_k: ${globals:Dataset_information.Top_k}
-  Classes_names: ${globals:Dataset_information.Classes_names}

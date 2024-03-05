@@ -6,3 +6,5 @@ Dataset_information:
   std: [0.2694, 0.2679, 0.2983]
   input_shape: [150,150]
   classes: 6
+  Top_k: 2
+  Class_names: ['buildings', 'forest', 'glacier', 'mountain', 'sea', 'street']

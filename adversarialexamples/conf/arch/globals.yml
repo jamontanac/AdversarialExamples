@@ -6,3 +6,5 @@ Dataset_information:
   std: [0.2509, 0.2560, 0.2862]
   input_shape: [64, 64]
   classes: 10
+  Top_k: 3
+  Classes_names: ['altar', 'apse', 'bell_tower', 'column', 'dome(inner)', 'dome(outer)', 'flying_buttress', 'gargoyle', 'stained_glass', 'vault']

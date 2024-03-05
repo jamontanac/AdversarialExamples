@@ -88,19 +88,190 @@ Resnet_model_Adversarial_PGD@Dataset:
   filepath: data/04_feature/Resnet_model_Adversarial_CIFAR_PGD.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
 
-"{model_type}_Report_{attack}@Dataset":
-  type: tracking.JSONDataset
-  filepath: data/08_reporting/{model_type}_Report_CIFAR_{attack}.json
-  versioned: true
-"{model_ref}_KL_Divergence_{attack_type}@Dataset":
-  type: tracking.JSONDataset
-  filepath: data/08_reporting/{model_ref}_KL_Divergence_CIFAR_{attack_type}.json
-  versioned: true
+# "{model_type}_Report_{attack}@Dataset":
+#   type: tracking.JSONDataset
+#   filepath: data/08_reporting/{model_type}_Report_CIFAR_{attack}.json
+#   versioned: true
+# "{model_ref}_KL_Divergence_{attack_type}@Dataset":
+#   type: tracking.JSONDataset
+#   filepath: data/08_reporting/{model_ref}_KL_Divergence_CIFAR_{attack_type}.json
+#   versioned: true
 
-"{model_ref}_Confusion_Matrix_{attack_type}@Plot":
+# "{model_ref}_Confusion_Matrix_{attack_type}@Plot":
+#   type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+#   filepath: data/08_reporting/{model_ref}_Confusion_Matrix_CIFAR_{attack_type}
+
+# "{model_ref}_Distributions_{attack_type}@Plot":
+#   type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+#   filepath: data/08_reporting/{model_ref}_Distributions_CIFAR_{attack_type}
+
+
+Regnet_x_model_Confusion_Matrix_CarliniL2@Plot:
+  filepath: data/08_reporting/Regnet_x_model_Confusion_Matrix_CIFAR_CarliniL2
   type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
-  filepath: data/08_reporting/{model_ref}_Confusion_Matrix_CIFAR_{attack_type}
-
-"{model_ref}_Distributions_{attack_type}@Plot":
+Regnet_x_model_Confusion_Matrix_DeepFool@Plot:
+  filepath: data/08_reporting/Regnet_x_model_Confusion_Matrix_CIFAR_DeepFool
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Regnet_x_model_Confusion_Matrix_FSGM@Plot:
+  filepath: data/08_reporting/Regnet_x_model_Confusion_Matrix_CIFAR_FSGM
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Regnet_x_model_Confusion_Matrix_PGD@Plot:
+  filepath: data/08_reporting/Regnet_x_model_Confusion_Matrix_CIFAR_PGD
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Regnet_x_model_Distributions_CarliniL2@Plot:
+  filepath: data/08_reporting/Regnet_x_model_Distributions_CIFAR_CarliniL2
   type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
-  filepath: data/08_reporting/{model_ref}_Distributions_CIFAR_{attack_type}
+Regnet_x_model_Distributions_DeepFool@Plot:
+  filepath: data/08_reporting/Regnet_x_model_Distributions_CIFAR_DeepFool
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Regnet_x_model_Distributions_FSGM@Plot:
+  filepath: data/08_reporting/Regnet_x_model_Distributions_CIFAR_FSGM
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Regnet_x_model_Distributions_PGD@Plot:
+  filepath: data/08_reporting/Regnet_x_model_Distributions_CIFAR_PGD
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Regnet_x_model_KL_Divergence_CarliniL2@Dataset:
+  filepath: data/08_reporting/Regnet_x_model_KL_Divergence_CIFAR_CarliniL2.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_x_model_KL_Divergence_DeepFool@Dataset:
+  filepath: data/08_reporting/Regnet_x_model_KL_Divergence_CIFAR_DeepFool.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_x_model_KL_Divergence_FSGM@Dataset:
+  filepath: data/08_reporting/Regnet_x_model_KL_Divergence_CIFAR_FSGM.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_x_model_KL_Divergence_PGD@Dataset:
+  filepath: data/08_reporting/Regnet_x_model_KL_Divergence_CIFAR_PGD.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_x_model_Report_CarliniL2@Dataset:
+  filepath: data/08_reporting/Regnet_x_model_Report_CIFAR_CarliniL2.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_x_model_Report_DeepFool@Dataset:
+  filepath: data/08_reporting/Regnet_x_model_Report_CIFAR_DeepFool.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_x_model_Report_FSGM@Dataset:
+  filepath: data/08_reporting/Regnet_x_model_Report_CIFAR_FSGM.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_x_model_Report_PGD@Dataset:
+  filepath: data/08_reporting/Regnet_x_model_Report_CIFAR_PGD.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_y_model_Confusion_Matrix_CarliniL2@Plot:
+  filepath: data/08_reporting/Regnet_y_model_Confusion_Matrix_CIFAR_CarliniL2
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Regnet_y_model_Confusion_Matrix_DeepFool@Plot:
+  filepath: data/08_reporting/Regnet_y_model_Confusion_Matrix_CIFAR_DeepFool
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Regnet_y_model_Confusion_Matrix_FSGM@Plot:
+  filepath: data/08_reporting/Regnet_y_model_Confusion_Matrix_CIFAR_FSGM
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Regnet_y_model_Confusion_Matrix_PGD@Plot:
+  filepath: data/08_reporting/Regnet_y_model_Confusion_Matrix_CIFAR_PGD
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Regnet_y_model_Distributions_CarliniL2@Plot:
+  filepath: data/08_reporting/Regnet_y_model_Distributions_CIFAR_CarliniL2
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Regnet_y_model_Distributions_DeepFool@Plot:
+  filepath: data/08_reporting/Regnet_y_model_Distributions_CIFAR_DeepFool
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Regnet_y_model_Distributions_FSGM@Plot:
+  filepath: data/08_reporting/Regnet_y_model_Distributions_CIFAR_FSGM
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Regnet_y_model_Distributions_PGD@Plot:
+  filepath: data/08_reporting/Regnet_y_model_Distributions_CIFAR_PGD
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Regnet_y_model_KL_Divergence_CarliniL2@Dataset:
+  filepath: data/08_reporting/Regnet_y_model_KL_Divergence_CIFAR_CarliniL2.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_y_model_KL_Divergence_DeepFool@Dataset:
+  filepath: data/08_reporting/Regnet_y_model_KL_Divergence_CIFAR_DeepFool.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_y_model_KL_Divergence_FSGM@Dataset:
+  filepath: data/08_reporting/Regnet_y_model_KL_Divergence_CIFAR_FSGM.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_y_model_KL_Divergence_PGD@Dataset:
+  filepath: data/08_reporting/Regnet_y_model_KL_Divergence_CIFAR_PGD.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_y_model_Report_CarliniL2@Dataset:
+  filepath: data/08_reporting/Regnet_y_model_Report_CIFAR_CarliniL2.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_y_model_Report_DeepFool@Dataset:
+  filepath: data/08_reporting/Regnet_y_model_Report_CIFAR_DeepFool.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_y_model_Report_FSGM@Dataset:
+  filepath: data/08_reporting/Regnet_y_model_Report_CIFAR_FSGM.json
+  type: tracking.JSONDataset
+  versioned: true
+Regnet_y_model_Report_PGD@Dataset:
+  filepath: data/08_reporting/Regnet_y_model_Report_CIFAR_PGD.json
+  type: tracking.JSONDataset
+  versioned: true
+Resnet_model_Confusion_Matrix_CarliniL2@Plot:
+  filepath: data/08_reporting/Resnet_model_Confusion_Matrix_CIFAR_CarliniL2
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Resnet_model_Confusion_Matrix_DeepFool@Plot:
+  filepath: data/08_reporting/Resnet_model_Confusion_Matrix_CIFAR_DeepFool
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Resnet_model_Confusion_Matrix_FSGM@Plot:
+  filepath: data/08_reporting/Resnet_model_Confusion_Matrix_CIFAR_FSGM
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Resnet_model_Confusion_Matrix_PGD@Plot:
+  filepath: data/08_reporting/Resnet_model_Confusion_Matrix_CIFAR_PGD
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+Resnet_model_Distributions_CarliniL2@Plot:
+  filepath: data/08_reporting/Resnet_model_Distributions_CIFAR_CarliniL2
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Resnet_model_Distributions_DeepFool@Plot:
+  filepath: data/08_reporting/Resnet_model_Distributions_CIFAR_DeepFool
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Resnet_model_Distributions_FSGM@Plot:
+  filepath: data/08_reporting/Resnet_model_Distributions_CIFAR_FSGM
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Resnet_model_Distributions_PGD@Plot:
+  filepath: data/08_reporting/Resnet_model_Distributions_CIFAR_PGD
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+Resnet_model_KL_Divergence_CarliniL2@Dataset:
+  filepath: data/08_reporting/Resnet_model_KL_Divergence_CIFAR_CarliniL2.json
+  type: tracking.JSONDataset
+  versioned: true
+Resnet_model_KL_Divergence_DeepFool@Dataset:
+  filepath: data/08_reporting/Resnet_model_KL_Divergence_CIFAR_DeepFool.json
+  type: tracking.JSONDataset
+  versioned: true
+Resnet_model_KL_Divergence_FSGM@Dataset:
+  filepath: data/08_reporting/Resnet_model_KL_Divergence_CIFAR_FSGM.json
+  type: tracking.JSONDataset
+  versioned: true
+Resnet_model_KL_Divergence_PGD@Dataset:
+  filepath: data/08_reporting/Resnet_model_KL_Divergence_CIFAR_PGD.json
+  type: tracking.JSONDataset
+  versioned: true
+Resnet_model_Report_CarliniL2@Dataset:
+  filepath: data/08_reporting/Resnet_model_Report_CIFAR_CarliniL2.json
+  type: tracking.JSONDataset
+  versioned: true
+Resnet_model_Report_DeepFool@Dataset:
+  filepath: data/08_reporting/Resnet_model_Report_CIFAR_DeepFool.json
+  type: tracking.JSONDataset
+  versioned: true
+Resnet_model_Report_FSGM@Dataset:
+  filepath: data/08_reporting/Resnet_model_Report_CIFAR_FSGM.json
+  type: tracking.JSONDataset
+  versioned: true
+Resnet_model_Report_PGD@Dataset:
+  filepath: data/08_reporting/Resnet_model_Report_CIFAR_PGD.json
+  type: tracking.JSONDataset
+  versioned: true
+

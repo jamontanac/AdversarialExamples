@@ -28,7 +28,7 @@ def create_pipeline(attack_types:List[str]=["DeepFool", "CarliniL2","FSGM","PGD"
     for index, model_ref in enumerate(models):
         defense_pipeline = [
             pipeline(pipe=defense_generation_templete(),
-                     parameters= {"params:data_params":"params:Data_information"},
+                     parameters= {"params:data_params":"params:Report_params"},
                      inputs={"model":f"{model_ref}",
                             "adversarial_data":f"{model_ref}_Adversarial_{attack_type}@Dataset"},
                     outputs={"Report":f"{model_ref}_Report_{attack_type}@Dataset",
