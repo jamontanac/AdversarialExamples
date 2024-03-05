@@ -6,3 +6,5 @@ Dataset_information:
   std: [0.2470, 0.2435, 0.2616]
   input_shape: [32, 32]
   classes: 10
+  Top_k: 3
+  Classes_names: ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']

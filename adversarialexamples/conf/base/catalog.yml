@@ -8,19 +8,23 @@ _dataset_base: &dataset_base
   mean: ${globals:Dataset_information.mean}
   std: ${globals:Dataset_information.std}
   image_size: ${globals:Dataset_information.input_shape}
+  train: false
+  adversarial_generation: false
 
 Dataset_for_train:
   <<: *dataset_base
   train: true
-  adversarial_generation: false
 Dataset_for_test:
   <<: *dataset_base
-  train: false
-  adversarial_generation: false
 Dataset_for_test_adversarial:
+  <<: *dataset_base
+  adversarial_generation: true
+Notebook_dataset:
   <<: *dataset_base
   train: false
   adversarial_generation: true
+  root: ../${globals:Dataset_information.root}
+
 # Models and results for CIFAR10
 Regnet_x_model:
   filepath: data/06_models/Regnet_x_CIFAR.pth
@@ -83,3 +87,20 @@ Resnet_model_Adversarial_FSGM@Dataset:
 Resnet_model_Adversarial_PGD@Dataset:
   filepath: data/04_feature/Resnet_model_Adversarial_CIFAR_PGD.pt
   type: adversarialexamples.extras.datasets.pytorch_datasets.PytorchDatasetDict
+
+"{model_type}_Report_{attack}@Dataset":
+  type: tracking.JSONDataset
+  filepath: data/08_reporting/{model_type}_Report_CIFAR_{attack}.json
+  versioned: true
+"{model_ref}_KL_Divergence_{attack_type}@Dataset":
+  type: tracking.JSONDataset
+  filepath: data/08_reporting/{model_ref}_KL_Divergence_CIFAR_{attack_type}.json
+  versioned: true
+
+"{model_ref}_Confusion_Matrix_{attack_type}@Plot":
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomJSONDataSetPlotly
+  filepath: data/08_reporting/{model_ref}_Confusion_Matrix_CIFAR_{attack_type}
+
+"{model_ref}_Distributions_{attack_type}@Plot":
+  type: adversarialexamples.extras.datasets.Image_folder_dataset.CustomMatplotlibWriter
+  filepath: data/08_reporting/{model_ref}_Distributions_CIFAR_{attack_type}

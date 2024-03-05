@@ -11,4 +11,4 @@ Parameters_testing:
   num_workers: 2
 Parameters_adversarial_generation:
   batch_size: 256
-  num_workers: 2
+  num_workers: 8

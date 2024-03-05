@@ -6,8 +6,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
-import torchvision
-import torchvision.transforms as transforms
 import numpy as np
 import art
 from art.estimators.classification import PyTorchClassifier
@@ -85,6 +83,7 @@ def Adversarial_generation(testloader:torch.utils.data.DataLoader,classifier: ar
     adversarial_labels = []
     label_confidence = []
     adv_label_confidence = []
+    original_images = []
     for data in testloader:
         images, labels = data
         images_cpu = images.cpu().detach().numpy()
@@ -104,7 +103,7 @@ def Adversarial_generation(testloader:torch.utils.data.DataLoader,classifier: ar
             
         
         adversarial_denorm = [denormalize(torch.tensor(x),mean=mean, std = std) for x in x_test_adv]
-        
+        image_denorm = [denormalize(x,mean=mean, std = std) for x in images]
         
         label_confidence.extend(confidence_predictions)
         adv_label_confidence.extend(confidence_predictions_adv)
@@ -112,6 +111,7 @@ def Adversarial_generation(testloader:torch.utils.data.DataLoader,classifier: ar
         real_labels.extend(labels.cpu().numpy())
         model_labels.extend(predictions)
         adversarial_labels.extend(adversarial_predictions)
+        original_images.extend(image_denorm)
         
     all_adversarial_examples = torch.stack(adversarial_examples)
     all_real_labels = torch.tensor(real_labels)
@@ -119,8 +119,10 @@ def Adversarial_generation(testloader:torch.utils.data.DataLoader,classifier: ar
     all_adversarial_labels = torch.tensor(adversarial_labels)
     all_confidence_labels = torch.tensor(label_confidence)
     all_adversarial_confidence_labels = torch.tensor(adv_label_confidence)
+    all_original_images = torch.stack(original_images)
     
     adversarial_data = {
+        "original": all_original_images,
         "examples": all_adversarial_examples,
         "confidence": all_confidence_labels,
         "adversarial_confidence": all_adversarial_confidence_labels,
