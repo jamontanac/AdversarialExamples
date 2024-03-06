@@ -21,7 +21,7 @@ from sklearn.metrics import confusion_matrix
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import seaborn as sns
-from .tranformation_defense import JPEGTransform, FlipTransform, ResizePadTransform, DistortTransform
+from .tranformation_defense import JPEGTransform, FlipTransform, ResizePadTransform, DistortTransform, ResizePadFlipTransform
 import logging
 import warnings
 warnings.filterwarnings("ignore")
@@ -307,8 +307,9 @@ def run_all_defenses(adversarial_data,model,data_params)->Tuple[Dict[str,Dict[st
     figs = {}
     Kl_dists = {}
     conf_matrix = {}
-    transformations = {"Flip":FlipTransform,"JPEG":JPEGTransform}
+    # transformations = {"Flip":FlipTransform,"JPEG":JPEGTransform}
     # transformations = {"Flip":FlipTransform,"ResizePad":ResizePadTransform,"Distort":DistortTransform,"JPEG":JPEGTransform}
+    transformations = {"ResizePadFlip":ResizePadFlipTransform,"Distort":DistortTransform,"JPEG":JPEGTransform}
     logger = logging.getLogger(__name__)
     for i in range(1,len(transformations.keys())+1):
         for trans in list(itertools.permutations(transformations.keys(),i)):
@@ -317,12 +318,11 @@ def run_all_defenses(adversarial_data,model,data_params)->Tuple[Dict[str,Dict[st
             logger.info(f"Performing defense: {transformation_name}")
             to_apply = [transformations[name]() for name in trans]
             defense_results = run_single_defense(adversarial_data,model,to_apply,data_params)
-
+            logger.info(f"{defense_results[0]['Accuracies']}")
             reports[transformation_name]= defense_results[0]
             figs[transformation_name] = defense_results[1]
             Kl_dists[transformation_name] = defense_results[2]
             conf_matrix[transformation_name] = defense_results[3]
-        break
     return reports,figs,Kl_dists,conf_matrix 
 
 

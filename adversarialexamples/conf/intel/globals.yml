@@ -7,4 +7,4 @@ Dataset_information:
   input_shape: [150,150]
   classes: 6
   Top_k: 2
-  Class_names: ['buildings', 'forest', 'glacier', 'mountain', 'sea', 'street']
+  Classes_names: ['buildings', 'forest', 'glacier', 'mountain', 'sea', 'street']

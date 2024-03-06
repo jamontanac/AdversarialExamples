@@ -126,7 +126,14 @@ class ResizePadTransform:
 
     def __call__(self, image):
         return resize_pad(image, ratio=self.ratio)
+class ResizePadFlipTransform:
+    def __init__(self, ratio=0.8, axis=2):
+        self.ratio = ratio
+        self.axis = axis
 
+    def __call__(self, image):
+        image = resize_pad(image, ratio=self.ratio)
+        return flip_image(image, axis=self.axis)
 class DistortTransform:
     def __init__(self, d=4, delta=0.5):
         self.d = d
