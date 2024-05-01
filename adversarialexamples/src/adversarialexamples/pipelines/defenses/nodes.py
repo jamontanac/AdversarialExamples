@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import matplotlib.figure as matplt
 import numpy as np
 import torch
-import torchvision
 import torchvision.transforms as transforms
 from typing import Tuple, Dict, List
 import pandas as pd
